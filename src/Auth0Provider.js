@@ -25,6 +25,7 @@ export default function Auth0Provider({ children, onRedirectCallback = DEFAULT_R
       const auth0 = await createAuth0Client(initOptions);
       setAuth0Client(auth0);
 
+
       // if it includes, user has been redirected to sign in
       if(window.location.search.includes('code=')) {
         // stripping off code=
