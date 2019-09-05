@@ -12,6 +12,16 @@ export const Auth0Context = React.createContext();
 // creating a new hook to use later
 export const useAuth0 = () => useContext(Auth0Context);
 
+export const withSession = Comp => {
+  return function WithSession(props) {
+    const { isAuthenticated, loading, auth0Client } = useAuth0();
+    if(!isAuthenticated && !loading) auth0Client.loginWithRedirect();
+    if(!isAuthenticated) return null;
+    return <Comp {...props}/>;
+  };
+};
+
+
 export default function Auth0Provider({ children, onRedirectCallback = DEFAULT_REDIRECT_CALLBACK, ...initOptions }) {
   const [isAuthenticated, updateIsAuthenticated] = useState(false);
   const [user, setUser] = useState();
