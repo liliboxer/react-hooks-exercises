@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth0 } from '../Auth0Provider';
 import Cat from '../Cat';
+import Play from './Play';
 
 export default function App() {
   // destructure this hook
@@ -25,6 +26,7 @@ export default function App() {
       {!isAuthenticated && <button onClick={login}>Login</button>}
       {isAuthenticated && <button onClick={logout}>Logout</button>}
       <Cat />
+      <Play />
     </>
   );
 }
